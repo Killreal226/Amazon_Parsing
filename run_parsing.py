@@ -33,8 +33,10 @@ async def main():
 
         descriptions = task_description.get_descriptions()
         products = join_data(products=products, descriptions=descriptions)
-
-        create_df(products=products)
+        if products == []:
+            print('<Response [503]> Amazon не готов обработать данные, нужно попробовать позже или еще раз')
+        else:
+            create_df(products=products)
     except Exception:
         print('Что то пошло не так, попробуйте перезапустить программу')
 
